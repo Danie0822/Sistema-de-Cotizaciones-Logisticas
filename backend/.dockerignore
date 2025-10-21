@@ -1,0 +1,42 @@
+# See https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
+# Node modules - we'll install inside the image
+node_modules
+
+
+# Git
+.git
+.gitignore
+
+# Logs
+logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode
+.idea
+
+# Build outputs
+dist
+build
+coverage
+
+# Frontend (if present)
+frontend/node_modules
+frontend/dist
+
+
+# npm/yarn lockfiles (optionally ignore to keep smaller context)
+package-lock.json
+yarn.lock
+
+# Misc
+*.tgz
+*.db
+
+
+# Dockerfiles and compose are included intentionally
