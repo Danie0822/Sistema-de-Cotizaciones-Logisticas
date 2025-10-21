@@ -2,8 +2,16 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
+// Variable para almacenar la función de manejo de errores de auth
+let authErrorHandler = null;
+
+// Función para establecer el manejador de errores de autenticación
+export function setAuthErrorHandler(handler) {
+  authErrorHandler = handler;
+}
+
 // Obtiene el token JWT almacenado
-function getToken() {
+export function getToken() {
   return localStorage.getItem('token');
 }
 
@@ -20,6 +28,30 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+// Interceptor para manejar respuestas y errores
+api.interceptors.response.use(
+  (response) => {
+    // Si la respuesta es exitosa, simplemente la devolvemos
+    return response;
+  },
+  (error) => {
+    // Si el error es 401 (No autorizado), significa que el token expiró o es inválido
+    if (error.response?.status === 401 && !error.config.url.includes('/auth/login')) {
+      // Limpiar datos de autenticación
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      
+      // Llamar al manejador de errores de autenticación si existe
+      if (authErrorHandler) {
+        authErrorHandler();
+      }
+    }
+    
+    // Propagar el error para que los componentes puedan manejarlo
+    return Promise.reject(error);
+  }
+);
 // Helper para extraer el .data.data de la respuesta
 const extractData = (promise) =>
   promise.then(res => res.data.data);
