@@ -6,9 +6,11 @@ import { AuthProvider } from './context/AuthContext.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/global.css';
 
+// Punto de entrada principal de la aplicacion
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
+      {/* Proveedor de autenticacion para toda la app */}
       <AuthProvider>
         <AppRouter />
       </AuthProvider>

@@ -9,6 +9,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Verificar si hay usuario guardado al cargar la app
   useEffect(() => {
     setUser(getCurrentUser());
   }, []);
@@ -18,7 +19,7 @@ export function AuthProvider({ children }) {
   };
 
   const signOut = () => {
-    logout();
+    logout(); // Limpia token del localStorage
     setUser(null);
     navigate('/login');
   };
@@ -30,6 +31,7 @@ export function AuthProvider({ children }) {
   );
 }
 
+// Hook personalizado para usar el contexto de auth
 export function useAuth() {
   return useContext(AuthContext);
 }

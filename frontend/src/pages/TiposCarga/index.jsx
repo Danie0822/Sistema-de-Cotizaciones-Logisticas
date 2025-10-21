@@ -14,7 +14,7 @@ export default function TiposCarga() {
     const [showCreate, setShowCreate] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [tipoEdit, setTipoEdit] = useState(null);
-
+    // Obtener lista de tipos de carga desde la API
     const fetchTipos = async () => {
         setLoading(true);
         try {

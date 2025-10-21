@@ -16,7 +16,7 @@ const TarifaBaseCreateModal = ({ show, onClose, onSuccess, clienteOptions, tipoC
     const [vigenciaHasta, setVigenciaHasta] = useState('');
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
-
+    // Validar datos del formulario
     const validate = () => {
         const errs = {};
         if (!tipoCargaId) errs.tipoCargaId = 'Tipo de carga requerido.';
@@ -25,7 +25,7 @@ const TarifaBaseCreateModal = ({ show, onClose, onSuccess, clienteOptions, tipoC
         if (!vigenciaDesde) errs.vigenciaDesde = 'Vigencia desde requerida.';
         return errs;
     };
-
+    // Manejar envio del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
         const errs = validate();

@@ -14,7 +14,6 @@ export default function Login() {
     e.preventDefault();
     try {
       const data = await login(email, password);
-      console.log("Data ssss", data.user);
       if (data.user.rol !== 'admin') {
         Swal.fire('Acceso denegado', 'Solo usuarios admin pueden acceder.', 'error');
         return;

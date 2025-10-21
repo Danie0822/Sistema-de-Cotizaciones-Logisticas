@@ -22,7 +22,7 @@ const ReglaCargoCreateModal = ({ show, onClose, token, onSuccess, tipoCargaOptio
   const [orden, setOrden] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  // Validación de campos
   const validate = () => {
     const errs = {};
     if (!tipoCargaId) errs.tipoCargaId = 'Tipo de carga requerido.';
@@ -35,7 +35,7 @@ const ReglaCargoCreateModal = ({ show, onClose, token, onSuccess, tipoCargaOptio
     if (pesoMax !== '' && (isNaN(pesoMax) || Number(pesoMax) < 0)) errs.pesoMax = 'Peso máximo debe ser >= 0.';
     return errs;
   };
-
+  // Manejar envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();

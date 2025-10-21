@@ -18,7 +18,7 @@ const TipoCargaEditModal = ({ show, onClose, tipoCarga, token, onSuccess }) => {
       setDescripcion(tipoCarga.descripcion || '');
     }
   }, [show, tipoCarga]);
-
+  // Validación de campos
   const validate = () => {
     const errs = {};
     if (!nombre.trim()) {

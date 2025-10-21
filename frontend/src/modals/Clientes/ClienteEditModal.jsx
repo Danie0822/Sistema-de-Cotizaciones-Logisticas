@@ -12,6 +12,7 @@ const ClienteEditModal = ({ show, onClose, cliente, token, onSuccess }) => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
+  // Cargar datos del cliente cuando se abre el modal
   useEffect(() => {
     if (show && cliente) {
       setNombre(cliente.nombre || '');
@@ -41,12 +42,13 @@ const ClienteEditModal = ({ show, onClose, cliente, token, onSuccess }) => {
     }
     setLoading(true);
     try {
-  await clientesService.update(cliente.id, { nombre: nombre.trim(), contacto: contacto.trim() });
+      // Actualizar cliente con datos limpios
+      await clientesService.update(cliente.id, { nombre: nombre.trim(), contacto: contacto.trim() });
       showSuccessAlert('Cliente actualizado');
-      onSuccess && onSuccess();
+      onSuccess && onSuccess(); // Refrescar lista 
       onClose();
     } catch (err) {
-     showErrorAlert(err?.response?.data?.error || 'Error inesperado');
+      showErrorAlert(err?.response?.data?.error || 'Error inesperado');
     } finally {
       setLoading(false);
     }

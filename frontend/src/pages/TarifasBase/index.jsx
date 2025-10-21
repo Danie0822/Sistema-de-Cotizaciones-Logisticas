@@ -23,7 +23,7 @@ export default function TarifasBase() {
     const [clienteOptions, setClienteOptions] = useState([]);
     const [tipoCargaOptions, setTipoCargaOptions] = useState([]);
     const [unidadOptions, setUnidadOptions] = useState([]);
-
+    // Obtener lista de tarifas base desde la API
     const fetchTarifas = async () => {
         setLoading(true);
         try {
@@ -67,7 +67,7 @@ export default function TarifasBase() {
             setUnidadOptions([]);
         }
     };
-
+    // Cargar datos al montar el componente como la tabla y opciones de selects
     useEffect(() => {
         fetchTarifas();
         fetchClienteOptions();
@@ -100,7 +100,7 @@ export default function TarifasBase() {
         { key: 'vigencia_desde', label: 'Desde' },
         { key: 'vigencia_hasta', label: 'Hasta' },
     ];
-
+    // Configuración de acciones de la tabla
     const actions = [
         {
             label: 'Editar',

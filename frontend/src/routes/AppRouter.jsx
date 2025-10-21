@@ -11,6 +11,7 @@ import TarifasBase from '../pages/TarifasBase';
 import Cotizaciones from '../pages/Cotizaciones';
 import Layout from '../components/Layout';
 
+// Componente para proteger rutas - solo admin puede acceder
 function PrivateRoute({ children }) {
   const { user } = useAuth();
   return user && user.rol === 'admin' ? children : <Navigate to="/login" />;
@@ -20,6 +21,7 @@ export default function AppRouter() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      {/* Rutas protegidas dentro del layout */}
       <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/clientes/*" element={<Clientes />} />
@@ -31,6 +33,7 @@ export default function AppRouter() {
         <Route path="/tarifasBase/:clientId" element={<TarifasBase />} />
         <Route path="/cotizaciones/*" element={<Cotizaciones />} />
       </Route>
+      {/* Cualquier ruta no encontrada va al dashboard */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

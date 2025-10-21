@@ -14,7 +14,7 @@ export default function UnidadesMedida() {
     const [showCreate, setShowCreate] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [unidadEdit, setUnidadEdit] = useState(null);
-
+    // Obtener lista de unidades de medida desde la API
     const fetchUnidades = async () => {
         setLoading(true);
         try {
@@ -57,7 +57,7 @@ export default function UnidadesMedida() {
         { key: 'codigo', label: 'Código' },
         { key: 'descripcion', label: 'Descripción' },
     ];
-
+    // Configuración de acciones de la tabla
     const actions = [
         {
             label: 'Editar',

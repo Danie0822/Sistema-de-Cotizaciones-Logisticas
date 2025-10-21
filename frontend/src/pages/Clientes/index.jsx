@@ -21,6 +21,7 @@ export default function Clientes() {
     // TODO: Reemplaza esto por la obtención real del token admin
     const token = localStorage.getItem('token') || '';
 
+    // Obtener lista de clientes desde la API
     const fetchClientes = async () => {
         setLoading(true);
         try {
@@ -52,14 +53,14 @@ export default function Clientes() {
             try {
                 await clientesService.delete(row.id);
                 showSuccessAlert('Cliente eliminado');
-                fetchClientes();
+                fetchClientes(); // Recargar lista
             } catch (err) {
                 showErrorAlert('Error al eliminar cliente');
             }
         }
     };
 
-
+// Configuracion de acciones para cada fila de la tabla
 const actions = [
     {
         label: 'Editar',

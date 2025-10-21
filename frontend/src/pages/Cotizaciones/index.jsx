@@ -21,7 +21,7 @@ export default function Cotizaciones() {
     const [tipoCargaOptions, setTipoCargaOptions] = useState([]);
     const [unidadOptions, setUnidadOptions] = useState([]);
     const [descuentoOptions, setDescuentoOptions] = useState([]);
-
+    // Obtener lista de cotizaciones desde la API
     const fetchCotizaciones = async () => {
         setLoading(true);
         try {
@@ -69,7 +69,7 @@ export default function Cotizaciones() {
             setDescuentoOptions([]);
         }
     };
-
+    // Cargar datos al montar el componente como la tabla y opciones de selects
     useEffect(() => {
         fetchCotizaciones();
         fetchClienteOptions();
@@ -86,7 +86,7 @@ export default function Cotizaciones() {
             'Reporte de Cotización'
         );
     };
-
+   // Configuración de encabezados de la tabla
     const headers = [
         { key: 'cliente.nombre', label: 'Cliente' },
         { key: 'tipoCarga.nombre', label: 'Tipo de carga' },

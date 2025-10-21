@@ -14,7 +14,7 @@ const DescuentoCreateModal = ({ show, onClose, token, onSuccess }) => {
   const [valor, setValor] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  // Validación de campos
   const validate = () => {
     const errs = {};
     if (!nombre.trim()) {
@@ -30,7 +30,7 @@ const DescuentoCreateModal = ({ show, onClose, token, onSuccess }) => {
     }
     return errs;
   };
-
+  // Manejar envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();

@@ -11,7 +11,7 @@ const UnidadMedidaCreateModal = ({ show, onClose, token, onSuccess }) => {
   const [descripcion, setDescripcion] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  // Validación de campos
   const validate = () => {
     const errs = {};
     if (!codigo.trim()) {
@@ -36,6 +36,7 @@ const UnidadMedidaCreateModal = ({ show, onClose, token, onSuccess }) => {
     }
     setLoading(true);
     try {
+      // Preparar datos para enviar
       await unidadesMedidaService.create({
         codigo: codigo.trim(),
         descripcion: descripcion.trim()

@@ -34,7 +34,7 @@ const ReglaCargoEditModal = ({ show, onClose, regla, token, onSuccess, tipoCarga
       setOrden(regla.orden !== undefined ? regla.orden : '');
     }
   }, [show, regla]);
-
+  // Validaciones de campos
   const validate = () => {
     const errs = {};
     if (!tipoCargaId) errs.tipoCargaId = 'Tipo de carga requerido.';

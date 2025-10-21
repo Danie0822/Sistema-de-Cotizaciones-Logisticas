@@ -12,6 +12,7 @@ const api = axios.create({
   baseURL: API_URL,
 });
 
+// Interceptor para agregar token automaticamente a todas las requests
 api.interceptors.request.use((config) => {
   const token = getToken();
   if (token) {
@@ -35,6 +36,7 @@ export const crud = {
 export const login = async (email, password) => {
   const res = await api.post('/auth/login', { email, password });
   const { token, user } = res.data.data;
+  // Guardar en localStorage para persistir sesion
   localStorage.setItem('token', token);
   localStorage.setItem('user', JSON.stringify(user));
   return { token, user };

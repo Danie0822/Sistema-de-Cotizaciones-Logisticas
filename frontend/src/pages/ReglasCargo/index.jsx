@@ -17,7 +17,7 @@ export default function ReglasCargo() {
     const [showEdit, setShowEdit] = useState(false);
     const [reglaEdit, setReglaEdit] = useState(null);
     const [tipoCargaOptions, setTipoCargaOptions] = useState([]);
-
+    // Obtener lista de reglas de cargo desde la API
     const fetchReglas = async () => {
         setLoading(true);
         try {
@@ -29,7 +29,7 @@ export default function ReglasCargo() {
             setLoading(false);
         }
     };
-
+    // Obtener opciones de tipo de carga para selects
     const fetchTipoCargaOptions = async () => {
         try {
             const tipos = await tiposCargaService.getAll();
@@ -74,7 +74,7 @@ export default function ReglasCargo() {
         { key: 'valorLabel', label: 'Valor', align: 'center' },
         { key: 'orden', label: 'Orden', align: 'center' },
     ];
-
+    // Configuración de acciones de la tabla
     const actions = [
         {
             label: 'Editar',

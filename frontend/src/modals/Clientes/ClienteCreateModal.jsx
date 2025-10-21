@@ -11,7 +11,7 @@ const ClienteCreateModal = ({ show, onClose, token, onSuccess }) => {
   const [contacto, setContacto] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  // Validar datos del formulario
   const validate = () => {
     const errs = {};
     if (!nombre.trim()) {

@@ -53,7 +53,7 @@ const TableComponent = ({ headers = [], data = [], actions = [], pageSize = 10, 
     const [debouncedSearch, setDebouncedSearch] = useState("");
     const searchTimeout = useRef();
 
-    // Debounce para el buscador
+    // Debounce para el buscador 
     useEffect(() => {
         if (searchTimeout.current) clearTimeout(searchTimeout.current);
         searchTimeout.current = setTimeout(() => setDebouncedSearch(search), 1000); // 1000 ms

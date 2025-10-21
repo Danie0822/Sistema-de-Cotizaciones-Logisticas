@@ -24,7 +24,7 @@ const CotizacionCreateModal = ({ show, onClose, onSuccess, clienteOptions, tipoC
   const [includeAuthorizedSignature, setIncludeAuthorizedSignature] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  // Validación de campos 
   const validate = () => {
     const errs = {};
     if (!clienteId) errs.clienteId = 'Cliente requerido.';
@@ -45,6 +45,7 @@ const CotizacionCreateModal = ({ show, onClose, onSuccess, clienteOptions, tipoC
     }
     setLoading(true);
     try {
+      // Preparar datos para enviar
       const body = {
         cliente_id: clienteId,
         tipo_carga_id: tipoCargaId,
@@ -61,7 +62,7 @@ const CotizacionCreateModal = ({ show, onClose, onSuccess, clienteOptions, tipoC
         ...(includeAuthorizedSignature && { includeAuthorizedSignature })
       };
       
-      // Usar la utilidad para generar y visualizar el PDF
+      // Generar PDF y abrirlo automaticamente
       await generateAndViewPDF(
         cotizacionesService.crearCotizacionPDF,
         body,

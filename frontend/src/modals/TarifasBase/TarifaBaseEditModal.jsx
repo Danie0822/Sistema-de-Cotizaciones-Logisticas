@@ -16,7 +16,7 @@ const TarifaBaseEditModal = ({ show, onClose, tarifa, onSuccess, clienteOptions,
   const [vigenciaHasta, setVigenciaHasta] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  // Cargar datos de la tarifa cuando se abra el modal
   useEffect(() => {
     if (show && tarifa) {
       setClienteId(tarifa.cliente_id || '');
@@ -27,7 +27,7 @@ const TarifaBaseEditModal = ({ show, onClose, tarifa, onSuccess, clienteOptions,
       setVigenciaHasta(tarifa.vigencia_hasta || '');
     }
   }, [show, tarifa]);
-
+  // Validar datos del formulario
   const validate = () => {
     const errs = {};
     if (!tipoCargaId) errs.tipoCargaId = 'Tipo de carga requerido.';
@@ -36,7 +36,7 @@ const TarifaBaseEditModal = ({ show, onClose, tarifa, onSuccess, clienteOptions,
     if (!vigenciaDesde) errs.vigenciaDesde = 'Vigencia desde requerida.';
     return errs;
   };
-
+  // Manejar envio del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();

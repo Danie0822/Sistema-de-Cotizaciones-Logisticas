@@ -18,7 +18,7 @@ const UnidadMedidaEditModal = ({ show, onClose, unidad, token, onSuccess }) => {
       setDescripcion(unidad.descripcion || '');
     }
   }, [show, unidad]);
-
+  // Validación de campos
   const validate = () => {
     const errs = {};
     if (!codigo.trim()) {

@@ -14,7 +14,7 @@ const DescuentoEditModal = ({ show, onClose, descuento, token, onSuccess }) => {
   const [valor, setValor] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  // Cargar datos del descuento cuando se abre el modal
   useEffect(() => {
     if (show && descuento) {
       setNombre(descuento.nombre_descuento || '');
@@ -22,7 +22,7 @@ const DescuentoEditModal = ({ show, onClose, descuento, token, onSuccess }) => {
       setValor(descuento.valor !== undefined ? descuento.valor : '');
     }
   }, [show, descuento]);
-
+  // Validacion de campos
   const validate = () => {
     const errs = {};
     if (!nombre.trim()) {
@@ -38,7 +38,7 @@ const DescuentoEditModal = ({ show, onClose, descuento, token, onSuccess }) => {
     }
     return errs;
   };
-
+  // Manejar envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();

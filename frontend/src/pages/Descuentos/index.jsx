@@ -14,7 +14,7 @@ export default function Descuentos() {
     const [showCreate, setShowCreate] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [descuentoEdit, setDescuentoEdit] = useState(null);
-
+    // Obtener lista de descuentos desde la API
     const fetchDescuentos = async () => {
         setLoading(true);
         try {
@@ -58,7 +58,7 @@ export default function Descuentos() {
         { key: 'metodoLabel', label: 'Método' },
         { key: 'valorLabel', label: 'Valor', align: 'center' },
     ];
-
+    // Configuración de acciones de la tabla
     const actions = [
         {
             label: 'Editar',
