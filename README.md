@@ -6,7 +6,7 @@ Monorepo que contiene una API backend y una aplicación frontend para gestionar 
 Resumen
 - Propósito: Generar, listar y administrar cotizaciones, clientes, tarifas y reglas de cargo.
 - Frontend: React + Vite (SPA)
-- Backend: Node.js + Express + Sequelize + PostgreSQL
+- Backend: Node.js + Express + Sequelize + PostgreSQL + Swagger
 
 Estructura principal
 - `backend/` - API REST, Dockerfile y `docker-compose.yml` para levantar API y Postgres.
