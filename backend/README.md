@@ -11,6 +11,7 @@ Tecnologías principales
 - Sequelize (ORM) con PostgreSQL
 - JWT para autenticación
 - Docker / docker-compose para despliegue local
+- Documentacion de cada ruta mendiante Swagger
 
 Archivos importantes
 - `src/server.js` - punto de entrada del servidor

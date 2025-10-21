@@ -1,4 +1,5 @@
 # Sistema de Cotizaciones - Monorepo (Logística)
+Práctica: este repositorio es una buena base para reforzar conocimientos en React (frontend) y Sequelize/Node (backend).
 
 Monorepo que contiene una API backend y una aplicación frontend para gestionar cotizaciones de servicios logísticos.
 
