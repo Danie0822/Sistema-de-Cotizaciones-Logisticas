@@ -6,18 +6,18 @@ const {
   update,
   destroy
 } = require('../controllers/user.controller');
-const {checkAuth} = require('../middlewares/checkAuth'); // Import your auth middleware
+const {checkAuth} = require('../middlewares/checkAuth'); // Import de middleware de autenticación
 const validateRequest = require('../utils/validateRequest');
 const {
   readUserRequestSchema,
   createUserRequestSchema,
   updateUserRequestSchema,
   deleteUserRequestSchema,
-} = require('../validations/user.schema'); // Ensure the file name matches
+} = require('../validations/user.schema'); // Importaciones de los esquemas de validación
 
 const router = express.Router();
 
-router.use(checkAuth('admin')); // Import the middleware for authentication by role the admin
+router.use(checkAuth('admin')); // Aplicar middleware de autenticación a todas las rutas de este router
 
 /**
  * @swagger

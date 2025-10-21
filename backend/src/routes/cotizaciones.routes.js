@@ -15,7 +15,7 @@ const {
 } = require('../validations/cotizacion.schema');
 
 const router = express.Router();
-router.use(checkAuth('admin')); // Import the middleware for authentication by role the admin
+router.use(checkAuth('admin')); // Aplicar middleware de autenticación a todas las rutas de este router
 /**
  * @swagger
  * tags:
