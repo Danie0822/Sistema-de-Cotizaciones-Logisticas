@@ -6,6 +6,7 @@ import useConfirmDialog from './alerts/ConfirmDialog.js';
 const links = [
   { to: '/clientes', label: 'Clientes', icon: 'bi-people' },
   { to: '/descuentos', label: 'Descuentos', icon: 'bi-percent' },
+  { to: '/impuestos', label: 'Impuestos', icon: 'bi-receipt' },
   { to: '/tiposCarga', label: 'Tipos de Carga', icon: 'bi-box-seam' },
   { to: '/unidadesMedida', label: 'Unidades de Medida', icon: 'bi-rulers' },
   { to: '/reglasCargo', label: 'Reglas de Cargo', icon: 'bi-gear' },

@@ -4,6 +4,7 @@ import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import Clientes from '../pages/Clientes';
 import Descuentos from '../pages/Descuentos';
+import Impuestos from '../pages/Impuestos';
 import TiposCarga from '../pages/TiposCarga';
 import UnidadesMedida from '../pages/UnidadesMedida';
 import ReglasCargo from '../pages/ReglasCargo';
@@ -64,6 +65,7 @@ export default function AppRouter() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/clientes/*" element={<Clientes />} />
         <Route path="/descuentos/*" element={<Descuentos />} />
+        <Route path="/impuestos/*" element={<Impuestos />} />
         <Route path="/tiposCarga/*" element={<TiposCarga />} />
         <Route path="/unidadesMedida/*" element={<UnidadesMedida />} />
         <Route path="/reglasCargo/*" element={<ReglasCargo />} />
