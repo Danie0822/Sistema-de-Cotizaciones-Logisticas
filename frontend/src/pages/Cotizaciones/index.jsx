@@ -86,13 +86,13 @@ export default function Cotizaciones() {
             'Reporte de Cotización'
         );
     };
-   // Configuración de encabezados de la tabla
+    // Configuración de encabezados de la tabla
     const headers = [
         { key: 'cliente.nombre', label: 'Cliente' },
         { key: 'tipoCarga.nombre', label: 'Tipo de carga' },
         { key: 'unidadMedida.codigo', label: 'Unidad' },
         { key: 'fecha_cotizacion', label: 'Fecha', align: 'center' },
-        { key: 'monto_total', label: 'Monto', align: 'center' },
+        { key: 'total_neto', label: 'Monto', align: 'center' },
     ];
 
     const actions = [
@@ -122,17 +122,22 @@ export default function Cotizaciones() {
                         let value = key.includes('.')
                             ? key.split('.').reduce((acc, k) => acc && acc[k], row)
                             : row[key];
-                        
+                        // Formatear total_neto como moneda
+                        if (key === 'total_neto' && value !== undefined && value !== null) {
+                            return `${Number(value).toFixed(2)}`;
+                        }
                         // Formatear fecha_cotizacion para mostrar solo la fecha
                         if (key === 'fecha_cotizacion' && value) {
                             return formatDateOnly(value);
                         }
-                        
+
                         if (typeof value === 'object' && value !== null) {
                             // Si accidentalmente es objeto, mostrar string vacía
                             return '';
                         }
                         return value ?? '';
+
+
                     }}
                 />
             )}
