@@ -10,7 +10,7 @@ const { z } = require('zod');
  *         - cliente_id
  *         - tipo_carga_id
  *         - unidad_id
- *         - monto_total
+ *         - monto_total_con_impuestos
  *       properties:
  *         id:
  *           type: string
@@ -37,9 +37,17 @@ const { z } = require('zod');
  *           format: date-time
  *           description: Date of the quotation.
  *           example: "2024-01-15T10:30:00.000Z"
- *         monto_total:
+ *         monto_sin_impuestos:
  *           type: number
- *           description: Total amount of the quotation.
+ *           description: Total amount without taxes.
+ *           example: 1050.00
+ *         monto_impuestos:
+ *           type: number
+ *           description: Total amount of taxes.
+ *           example: 200.75
+ *         monto_total_con_impuestos:
+ *           type: number
+ *           description: Total amount including taxes.
  *           example: 1250.75
  *     CotizacionRequest:
  *       type: object
@@ -73,6 +81,21 @@ const { z } = require('zod');
  *           format: uuid
  *           description: ID of the discount (optional).
  *           example: "550e8400-e29b-41d4-a716-446655440004"
+ *         impuestos_ids:
+ *           type: array
+ *           items:
+ *             type: string
+ *             format: uuid
+ *           description: Array of tax IDs to apply (optional).
+ *           example: ["550e8400-e29b-41d4-a716-446655440005", "550e8400-e29b-41d4-a716-446655440006"]
+ *         origen:
+ *           type: string
+ *           description: Origin location (optional).
+ *           example: "Buenos Aires"
+ *         destino:
+ *           type: string
+ *           description: Destination location (optional).
+ *           example: "Mar del Plata"
  */
 
 // Schema for cotizacion report parameter
@@ -99,6 +122,17 @@ const crearCotizacionSchema = z.object({
         .uuid('Descuento ID must be a valid UUID')
         .optional()
         .nullable(),
+    impuestos_ids: z.array(
+        z.string().uuid('Each impuesto ID must be a valid UUID'),
+        { message: 'impuestos_ids must be an array of valid UUIDs' }
+    )
+        .optional()
+        .nullable(),
+    origen: z.string().optional().nullable(),
+    destino: z.string().optional().nullable(),
+    includeNotes: z.boolean().optional().default(false),
+    includeTerms: z.boolean().optional().default(true),
+    notes: z.string().optional().nullable()
 });
 
 const crearCotizacionRequestSchema = z.object({

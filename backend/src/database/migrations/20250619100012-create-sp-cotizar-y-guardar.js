@@ -5,7 +5,9 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     // Crear el stored procedure sp_cotizar_y_guardar
     await queryInterface.sequelize.query(`
-DROP FUNCTION IF EXISTS public.sp_cotizar_y_guardar;
+DROP FUNCTION IF EXISTS public.sp_cotizar_y_guardar(uuid, uuid, uuid, numeric, uuid);
+DROP FUNCTION IF EXISTS public.sp_cotizar_y_guardar();
+
     CREATE OR REPLACE FUNCTION public.sp_cotizar_y_guardar(
     p_cliente_id    uuid,
     p_tipo_carga_id uuid,

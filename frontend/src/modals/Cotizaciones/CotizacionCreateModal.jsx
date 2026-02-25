@@ -24,6 +24,7 @@ const CotizacionCreateModal = ({ show, onClose, onSuccess, clienteOptions, tipoC
   const [includeAuthorizedSignature, setIncludeAuthorizedSignature] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+
   // Validación de campos 
   const validate = () => {
     const errs = {};

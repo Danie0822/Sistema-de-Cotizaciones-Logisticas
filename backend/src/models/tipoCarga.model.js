@@ -51,6 +51,11 @@ class TipoCarga extends BaseEntity {
       foreignKey: 'tipo_carga_id',
       as: 'cotizaciones'
     });
+
+    TipoCarga.hasMany(models.Impuesto, {
+      foreignKey: 'tipo_carga_id',
+      as: 'impuestos'
+    });
   }
 }
 

@@ -26,7 +26,19 @@ class CotizacionController {
     static obtenerCotizaciones = catchErrors(async (req, res, next) => {
         const cotizaciones = await this.service.findAll(
             {
-                include: this.includes,
+                include: [
+                    ...this.includes,
+                    {
+                        association: 'detallesImpuestos',
+                        attributes: ['id', 'impuesto_id', 'base_calculo', 'porcentaje_aplicado', 'monto'],
+                        include: [
+                            {
+                                association: 'impuesto',
+                                attributes: ['id', 'nombre', 'codigo', 'tipo']
+                            }
+                        ]
+                    }
+                ],
                 order: [['fecha_cotizacion', 'DESC']]
             }
         );
@@ -53,9 +65,8 @@ class CotizacionController {
             });
         }
 
-
         const result = await sequelize.query(
-            'SELECT sp_cotizar_y_guardar(:p_cliente_id, :p_tipo_carga_id, :p_unidad_id, :p_peso, :p_origen, :p_destino, :p_descuento_id) AS cotizacion_id',
+            'SELECT sp_cotizar_y_guardar(:p_cliente_id, :p_tipo_carga_id, :p_unidad_id, :p_peso, :p_descuento_id, :p_origen, :p_destino) AS cotizacion_id',
             {
                 replacements: {
                     p_cliente_id: cliente_id,
@@ -63,8 +74,8 @@ class CotizacionController {
                     p_unidad_id: unidad_id,
                     p_peso: peso,
                     p_descuento_id: descuento_id || null,
-                    p_origen: origen,
-                    p_destino: destino
+                    p_origen: origen || null,
+                    p_destino: destino || null
                 },
                 type: sequelize.QueryTypes.SELECT
             }

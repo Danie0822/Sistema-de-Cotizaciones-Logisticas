@@ -266,6 +266,39 @@ class CotizacionReportTemplate {
       });
     }
 
+    // Subtotal (antes de impuestos)
+    const subtotalRow = cotizacionData.find(item => item.tipo_detalle === 'subtotal');
+    if (subtotalRow) {
+      this.checkPageBreakAndRenderHeader(columns, tableLeft, table.rowHeight);
+      this.renderSubtotalRow(columns, tableLeft, 'Subtotal sin impuestos', subtotalRow.importe);
+      this.currentY += table.rowHeight;
+      rowIndex++;
+    }
+
+    // Impuestos (con encabezado de sección)
+    const impuestos = cotizacionData.filter(item => item.tipo_detalle === 'impuesto');
+    if (impuestos.length > 0) {
+      // Verificar espacio para encabezado de sección + al menos 1 fila
+      this.checkPageBreakAndRenderHeader(columns, tableLeft, table.rowHeight * 2);
+      
+      this.renderSectionHeader('impuesto', tableLeft, columns);
+      this.currentY += table.rowHeight;
+
+      impuestos.forEach((item, index) => {
+        if (index > 0 && index % 8 === 0) {
+          this.checkPageBreakAndRenderHeader(columns, tableLeft, table.rowHeight);
+        }
+        
+        this.renderTableRow(columns, tableLeft, [
+          item.concepto,
+          'Impuesto',
+          pdfUtils.formatCurrency(item.importe)
+        ], rowIndex % 2 === 0, ['left', 'center', 'right']);
+        this.currentY += table.rowHeight;
+        rowIndex++;
+      });
+    }
+
     // Total final
     const totalRow = cotizacionData.find(item => item.tipo_detalle === 'total');
     if (totalRow) {
@@ -612,6 +645,8 @@ class CotizacionReportTemplate {
       'cargo': 'CARGOS',
       'total_bruto': 'SUBTOTAL (ANTES DE DESCUENTOS)',
       'descuento': 'DESCUENTOS APLICADOS',
+      'subtotal': 'SUBTOTAL (SIN IMPUESTOS)',
+      'impuesto': 'IMPUESTOS APLICADOS',
       'total': 'TOTAL FINAL'
     };
     return titles[tipoDetalle] || tipoDetalle.toUpperCase();

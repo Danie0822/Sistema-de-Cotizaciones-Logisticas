@@ -3,10 +3,13 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
+    // Eliminar versión anterior del stored procedure
+    await queryInterface.sequelize.query(`
+      DROP FUNCTION IF EXISTS public.sp_cotizar_y_guardar(uuid, uuid, uuid, numeric, uuid);
+    `);
+
     // Crear el stored procedure sp_cotizar_y_guardar
     await queryInterface.sequelize.query(`
-    DROP FUNCTION IF EXISTS public.sp_cotizar_y_guardar(uuid, uuid, uuid, numeric, uuid);
-
     CREATE OR REPLACE FUNCTION public.sp_cotizar_y_guardar(p_cliente_id uuid, p_tipo_carga_id uuid, p_unidad_id uuid, p_peso numeric, p_origen varchar(255), p_destino varchar(255), p_descuento_id uuid DEFAULT NULL::uuid)
     RETURNS uuid
     LANGUAGE plpgsql

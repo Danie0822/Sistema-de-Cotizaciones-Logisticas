@@ -37,12 +37,21 @@ class Cotizacion extends BaseEntity {
             isDate: true
           }
         },
-        monto_total: {
+        monto_sin_impuestos: {
           type: DataTypes.DECIMAL(14, 4),
           allowNull: false,
           validate: {
             min: 0
-          }
+          },
+          comment: 'Total sin impuestos (previamente monto_total)'
+        },
+        total_neto: {
+          type: DataTypes.DECIMAL(14, 4),
+          allowNull: true,
+          validate: {
+            min: 0
+          },
+          comment: 'Total después de descuentos y antes de impuestos'
         },
         total_bruto: {
           type: DataTypes.DECIMAL(14, 2),
@@ -67,11 +76,27 @@ class Cotizacion extends BaseEntity {
         },
         origen: {
           type: DataTypes.STRING(255),
-          allowNull: false
+          allowNull: true
         },
         destino: {
           type: DataTypes.STRING(255),
-          allowNull: false
+          allowNull: true
+        },
+        monto_impuestos: {
+          type: DataTypes.DECIMAL(14, 4),
+          defaultValue: 0,
+          validate: {
+            min: 0
+          },
+          comment: 'Suma de todos los impuestos aplicados'
+        },
+        monto_total_con_impuestos: {
+          type: DataTypes.DECIMAL(14, 4),
+          allowNull: false,
+          validate: {
+            min: 0
+          },
+          comment: 'Monto total incluyendo impuestos'
         }
       },
       {
@@ -103,6 +128,11 @@ class Cotizacion extends BaseEntity {
     Cotizacion.hasMany(models.CotizacionDetalle, {
       foreignKey: 'cotizacion_id',
       as: 'detalles'
+    });
+
+    Cotizacion.hasMany(models.CotizacionDetalleImpuesto, {
+      foreignKey: 'cotizacion_id',
+      as: 'detallesImpuestos'
     });
   }
 }
