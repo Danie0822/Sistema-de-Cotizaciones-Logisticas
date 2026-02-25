@@ -11,7 +11,7 @@ module.exports = {
         unidad_id: '550e8400-e29b-41d4-a716-446655440020', // KG
         precio_unitario: 25.50,
         vigencia_desde: '2025-01-01',
-        vigencia_hasta: '2025-12-31',
+        vigencia_hasta: null,
         created_at: new Date(),
         updated_at: new Date()
       },
