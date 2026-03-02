@@ -1,23 +1,5 @@
 /**
- * Configura  // Colores corporativos modernos y elegantes
-  colors: {
-    primary: '#1e293b',      // Gris azulado oscuro - elegante y profesional
-    secondary: '#475569',    // Gris medio para jerarquía
-    accent: '#64748b',       // Gris azulado claro para acentos
-    text: '#0f172a',         // Casi negro para texto principal - máximo contraste
-    textLight: '#64748b',    // Gris para texto secundario
-    textMuted: '#94a3b8',    // Gris claro para texto menos importante
-    border: '#e2e8f0',       // Gris muy claro para bordes sutiles
-    background: '#f8fafc',   // Fondo casi blanco con toque azulado
-    white: '#ffffff',
-    success: '#059669',      // Verde profesional
-    warning: '#d97706',      // Naranja sobrio
-    danger: '#dc2626',       // Rojo profesional
-    tableHeader: '#334155',  // Gris oscuro para encabezados - contraste elegante
-    tableBorder: '#cbd5e1',  // Gris suave para bordes de tabla
-    headerBg: '#f1f5f9',     // Fondo muy suave para secciones
-    divider: '#e2e8f0'       // Líneas divisorias sutiles
-  },ra reportes PDF
+ * Configuración de estilos para reportes PDF
  * Define tipografías, colores, márgenes y dimensiones estándar
  */
 

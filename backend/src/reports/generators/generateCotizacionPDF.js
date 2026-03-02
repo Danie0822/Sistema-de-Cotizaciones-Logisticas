@@ -1,4 +1,5 @@
 const CotizacionReportTemplate = require('../templates/cotizacionReportTemplate');
+const pdfStyles = require('../styles/pdfStyles');
 const pdfUtils = require('../../utils/pdfUtils');
 
 /**
@@ -168,7 +169,7 @@ class GenerateCotizacionPDF {
   static addNotesSection(template, notes) {
     if (!notes || !template.doc) return;
 
-    const { colors, fonts, spacing } = require('../styles/pdfStyles');
+    const { colors, fonts, spacing } = pdfStyles;
 
     // Verificar espacio antes de agregar notas
     const requiredHeight = 80;
@@ -208,7 +209,6 @@ class GenerateCotizacionPDF {
   static addTermsSection(template) {
     if (!template.doc) return;
 
-    const pdfStyles = require('../styles/pdfStyles');
     const { colors, fonts, spacing } = pdfStyles;
     
     // Verificar espacio disponible antes de agregar términos
